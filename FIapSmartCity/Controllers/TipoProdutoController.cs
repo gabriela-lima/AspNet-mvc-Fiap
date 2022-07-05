@@ -61,5 +61,63 @@ namespace FIapSmartCity.Controllers
             //Substituimos o return view() pelo metodo de redirecionamento
             return RedirectToAction("Index", "TipoProduto");
         }
+
+        [HttpGet]
+        public IActionResult Editar(int Id)
+        {
+            //imprime a mensagem de execucao
+            System.Diagnostics.Debug.Print("Consultando o Tipo com Id = "+ Id);
+
+            //cria o modelo que simula a consulta no banco de dados
+            TipoProduto tipoProduto = new TipoProduto()
+            {
+                IdTipo = Id,
+                DescricaoTipo = "Tinta",
+                Comercializado = true
+            };
+
+            //retorna para a view o objeto modelo com as propriedades preenchidas com os dados do BD
+            return View(tipoProduto);
+        }
+
+        [HttpPost]
+        public IActionResult Editar(Models.TipoProduto tipoProduto)
+        {
+            //imprime valores do modelo
+            System.Diagnostics.Debug.Print("Descrição: " + tipoProduto.DescricaoTipo);
+            System.Diagnostics.Debug.Print("Comercializado: " + tipoProduto.Comercializado);
+
+            //simula que os dados foram gravados
+            System.Diagnostics.Debug.Print("Gravando o Tipo Editado");
+
+            //Substituimos o return View() pelo metodo de redirecionamento
+            return RedirectToAction("Index", "TipoProduto");
+        }
+
+        [HttpGet]
+        public IActionResult Consultar(int Id)
+        {
+            //imprime a mensagem de execucao
+            System.Diagnostics.Debug.Print("Consultando o Tipo com Id = "+ Id);
+            //cria o modelo que simula a consulta no banco de dados
+            TipoProduto tipoProduto = new TipoProduto()
+            {
+                IdTipo = Id,
+                DescricaoTipo = "Tinta",
+                Comercializado = true
+            };
+            //retorna para a view o objeto modelo com as propriedades com dados do banco de dados
+            return View(tipoProduto) ;
+        }
+
+        [HttpGet]
+        public IActionResult Excluir(int Id)
+        {
+            //imprime a mensagem de execucao
+            System.Diagnostics.Debug.Print("Excluir o tipo com Id = "+ Id);
+
+            //substituimos o return View() pelo metodo de redirecionamento
+            return RedirectToAction("Index", "TipoProduto");
+        }
     }
 }
