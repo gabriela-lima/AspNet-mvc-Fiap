@@ -49,17 +49,36 @@ namespace FIapSmartCity.Controllers
 
         //Anotação Ver HTTP Post
         [HttpPost]
+        //Adicionando a validacao fazendo com que o usuario tenha que digitar algo na descricao para conseguir cadastrar um novo produto
         public IActionResult Cadastrar(Models.TipoProduto tipoProduto)
         {
-            //Imprime os valores do modelo
-            System.Diagnostics.Debug.Print("Descrição: "+ tipoProduto.DescricaoTipo);
-            System.Diagnostics.Debug.Print("Comercializado: " + tipoProduto.Comercializado);
+            //usando outra forma de validacao pelo proprio modelo
+            //validando o campo descricao
+            //if(string.IsNullOrEmpty(tipoProduto.DescricaoTipo))
+            //{
+                //adicionando a mensagem de erro para descricao em branco
+                //ModelState.AddModelError("Descricao", "Descrição obrigatória!");
+            //}
 
-            //Simula que os dados foram gravados
-            System.Diagnostics.Debug.Print("Gravando o Tipo de Produto");
+            //se o ModelState nao tem erro
+            if(ModelState.IsValid)
+            {
+                //Imprime os valores do modelo
+                System.Diagnostics.Debug.Print("Descrição: " + tipoProduto.DescricaoTipo);
+                System.Diagnostics.Debug.Print("Comercializado: " + tipoProduto.Comercializado);
 
-            //Substituimos o return view() pelo metodo de redirecionamento
-            return RedirectToAction("Index", "TipoProduto");
+                //Simula que os dados foram gravados
+                System.Diagnostics.Debug.Print("Gravando o Tipo de Produto");
+
+                //Substituimos o return view() pelo metodo de redirecionamento
+                return RedirectToAction("Index", "TipoProduto");
+            }
+            else
+            {
+                //caso encontre algum erro no preenchimento do campo descricao
+                //retorna para a tela do formulario
+                return View(tipoProduto);
+            }
         }
 
         [HttpGet]
