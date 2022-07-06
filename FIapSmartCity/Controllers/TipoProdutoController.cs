@@ -70,6 +70,10 @@ namespace FIapSmartCity.Controllers
                 //Simula que os dados foram gravados
                 System.Diagnostics.Debug.Print("Gravando o Tipo de Produto");
 
+                //Gravacao efetuada com sucesso
+                //gravando mensagem de sucesso no TempData
+                TempData["mensagem"] = "Tipo cadastrado com sucesso!";
+
                 //Substituimos o return view() pelo metodo de redirecionamento
                 return RedirectToAction("Index", "TipoProduto");
             }
