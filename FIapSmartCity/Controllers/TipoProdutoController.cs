@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FIapSmartCity.Controllers
 {
+    [Filters.LogFilter]
     public class TipoProdutoController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             //criando o atributo da lista
